@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower|Kavivanar|Open+Sans|Risque");
+
+h1 {
+    font-family: 'Indie Flower', sans-serif;
+}
+
+h2 {
+    font-family: 'Kavivanar', sans-serif;
+}
+
+p {
+    font-family: 'Risque', 'Open Sans', serif;
+}
