@@ -12,40 +12,150 @@
         <div>
             <h2>Forensics Basics</h2>
             <p>
-                The most fundamental parts of computer forensics are making sure 
-                Key things: can you replicate it?  Can you explain it?
-                Yes you can analyze memory dumps!  It's a core step.
-                Only thing you are proving is what happened on the system.
+                The most fundamental parts of computer forensics are making sure that you can 1. replicate it 2. explain it.  
+                Rather like tech support, part of what you do is explaining to non-technical people and those who simply don't 
+                have as much knowledge as you do what is going on and why it should not be that way.  Even more so for computer 
+                forensicists, because they may have to go up to a judge or jury in a court case, or explain a company breach to 
+                a PR person, and make sure that non-technical people understand well enough to themselves communicate what 
+                happened.
             </p>
             <p>
                 When do you do forensic investigations?  You do investigations in cases of fraud, intellectual property theft, 
-                hacker intrusions or data breaches, and more unnerving crimes like child exploitation and trafficking.  Memory 
-                dumps are extremely useful for investigations, and there are other other tools like physically freezing the 
-                system that can be used to avoid data loss.  With no data, there isn't anything to investigate.  Memory dumps 
-                should be a core step of investigations.
+                hacker intrusions or data breaches, and more unnerving crimes like child exploitation and trafficking.    
             </p>
             <p>
-                Forensics Steps: Evidence acquisition, Investigation and analysis, Reporting results
-                Three categories: Life forensics, Post-mortem based forensics (memory/disk), Network based forensics
-                Can use md5 checksums to compare to databases to check if child porn
-                Have to learn how to explain to judges in a way they understand
-                Forensics Nutshell: identify evidence, preserve evidence, analyze evidence, present results
-                Four principles: minimize data loss, record everything, analyze all data collected, report findings
-                May need to present to a court of law
-                First thing you always do: record your time and the system time
-                Might be on a corporate time sync server, and be 5+ minutes off
-                Difficult things that might be useful: car gps!
-
+                Memory dumps are extremely useful for investigations, and there are other other tools like physically freezing the 
+                system that can be used to avoid data loss.  With no data, there isn't anything to investigate.  Memory dumps 
+                should be a core step of investigations.  One rather interesting tactic when investigating child exploitation 
+                is that there are databases that hold hashes of images, and you could compare the hashes to hashes of files that 
+                you have so you don't have to view the horrifying images yourself.  Additionally, the first thing that you should 
+                always do when given a device is to record both your time and the system time.  The system time might be way off, 
+                and you may need to rebuild a chronological sequence of the events.
+            </p>
+            <p>
+                As a forensicist, your goal is to prove what happened on the device that you are investigating.  You follow four 
+                basic steps: identifying and acquiring evidence, preserving the evidence, investigating and analyzing the evidence, 
+                and presenting your results.  The lecturer mentioned that reports would almost always be read over by colleagues, and 
+                edited to be as best as possible before presented.  Forensics has four principles: minimizing data loss, recording everything, 
+                analyzing all data collected, and always reporting findings.  The three main categories are life forensics, post-mortem 
+                based forensics (such as investigating memory on main memory or a disk), and network based forensics.
             </p>
         </div>
         <div>
-            <h2>Evidence (lesson 1 part 3)</h2>
+            <h2>Evidence</h2>
             <h3>What is evidence?</h3>
-            <p>Given how forensics is used in a court of law, it is important to understand what is evidence.
-                Evidence is
+            <p>
+                Given how forensics is used in a court of law, it is important to understand what is evidence.
+                Evidence is simply anything that can be used to prove or disprove a fact.  It is used to build proof 
+                    and not to pass judgement.
                 Evidence can be found from all kinds of levels: your network, operating system, applications that you use,
                     peripherals, USB drives, and other human testimony.  Just keep in mind - just because it's evidence doesn't
                     mean that it is admissable evidence, which is evidence that a court can accept.
+                You can find evidence in all kinds of places your computer.  Registry, log files, the file system, your memory... 
+                    all kinds of places that you might not think of normally in normal use.
+                Most importantly, you need to find evidence to prove something in multiple ways one cohesive conclusion.
+            </p>
+            <p>
+                It can be incredibly hard to dig through as much data as there can be, especially now that larger hard drives are 
+                    getting more common.  For example, child exploiter might have multiple 8TB harddrives of video or images.
+            </p>
+
+            <h3>Gathering and Preserving Evidence</h3>
+            <p>
+                Your primary goal is to preserve the data that you have.  A couple of ways to ensure this are to create a bit-image 
+                    copy for analysis or creating a hash of the disk and its partitions.  Hashes can be extremely useful, and 
+                    help you ensure that no data is lost or changed.  The original harddrive should still be kept safe even 
+                    after you get the checksum.
+            </p>
+            <p>
+                One technique that can be used for getting through all of the data if you have a large or multiple harddrives to 
+                    investigate is using a whitelisted checksum - basically, using checksums to identify what you know isn't 
+                    malicious so that you can filter out what you know is good and only look through what you aren't sure of.  
+                    If their harddrive is encrypted, you might be able to either get the key from the owner, or get what you 
+                    need from memory dumps.
+            </p>
+            <p>
+                SSDs can be special, and you can be asked to do forensics on devices like GPSes.  Additionally, there can be lines 
+                    in what you can investigate.  If you find someone's email account login, for example, you would need to get 
+                    permission from a judge before you log into their account, even if you can't find anything on their system.
+            </p>
+        </div>
+        <div>
+            <h2>Incidence Response</h2>
+            <p>
+                A major part of incident response is evaluation.  Teams often can be ad hoc, and be subject matter experts pulled 
+                    together and asked to investigate.  Not only do you need to find what happened, but how to fix the incident 
+                    and prevent it from spreading.  You have to take reponsibility for what you do, which could be things like 
+                    shutting down entire servers.  Beware of panicked management.  You also need to make sure that you have the 
+                    access that you need to investigate.  If you don't find what you're looking for where you look, look elsewhere.
+                    Logs can quite vary from one system to another.
+            </p>
+            <p>
+                Incidents typically follow a few steps.  Reconnaissance, weaponization, delivery, exploitation, installation, 
+                    command and control, and then actions on objectives.  Attackers look to figure out how to break into your 
+                    system, figure out how, deliver it to you, then try to take over your system so that they can do what they 
+                    wanted to do.  
+            </p>
+            <p>
+                The cycle of investigation has a few steps before the cycle.  Verification, system description, and evidence acquisition 
+                    before the cycle of timeline analysis, media analysist, string or byte search, data recovery, and reporting your 
+                    analysis.
+            </p>
+        </div>
+        <div>
+            <h2>Tools!</h2>
+            <p>
+                Locard's exchange principle states that there is always a transfer of material from one thing to another when they come into 
+                    contact.  Basically, you cannot interact with something without affecting it, which means a lot when investigating 
+                    forensics.  Even taking a system snapshot can leave evidence.  That means you need to keep in mind that your investigation 
+                    will leave traces that will remain, and that you need to record it.
+            </p>
+            <p>
+                Sometimes, you may not be able to do anything other than pull the plug, but it comes with risks, including destroying data.  
+                    Windows does have a pagefile.sys that can be examined, and there are hibernation files.
+                    One thing that you should always do is unplug the network cable or get the port blocked.  Otherwise, an attacker might 
+                    remain connected.  To minimize data risk, you want to examine things in the order of volatitity from the top down.
+                <dl>
+                    <dt>Order of volatility</dt>
+                    <dd>System memory</dd>
+                    <dd>Temporary File systems (like a swapfile or paging file)</dd>
+                    <dd>Process table and network connections (specifics can be dumped)</dd>
+                    <dd>Network routing information and ARP cache</dd>
+                    <dd>Forensic disk examination</dd>
+                    <dd>Remote logging and monitoring</dd>
+                    <dd>Physical configuration and network topology</dd>
+                    <dd>Backups</dd>
+                </dl>
+                You should not be limited to the list, as you might always be able to find more.  Always get the volatile data before you 
+                    start on non-volatitle things like logs, registry, executables, or relevant files.
+            </p>
+            <p>
+                When doing investigation, don't install your tools on what you are investigating!  Evidence and backups should not be written 
+                    to the suspect device.  AccessData and FastDump are tools for doing memory dumps.  Network shares are good places to save 
+                    to.  You can mount disk image backups to analyze them, and do it in read only mode.
+            </p>
+        </div>
+        <div>
+            <h2>Memory is Wonderful</h2>
+            <p>
+                You can get crazy amounts of data from the main memory.  Volatility is a great tool for getting memory dumps, and Yara is a 
+                    great Volatility addon for finding malware on memory.
+            </p>
+        </div>
+
+        <div>
+            <h2>Places to look</h2>
+            <p>
+                Windows will log just about everything that happens to it in the Registry.  Regripper can be used for analyzing it, but you can 
+                    also just use the standard Registry Editor.  The top 5 folders are called hives, or root keys, and only HKEY_USERS (HKU) and 
+                    HKEY_LOCAL_MACHINE (HKLM) are real folders, as the other three are shortcuts.  The folders under the root keys are subkeys, 
+                    and they contain collections of values, which have a name and a data value.  Malware likes to use the Registry because it 
+                    can cause shenanigans like the malware being reran after reboots.  The registry also saves passwords and visited urls.
+            </p>
+            <p>
+                Once you find one thing, use it to find the next.  Try to correlate time stamps to build a timeline and get a big picture of the 
+                    malware.  The master file table is really useful, as it tracks file creation and edits.  Volatility, the master file table, 
+                    and Reg-Ripper are good tools for building timelines.
             </p>
         </div>
     </body>
