@@ -115,6 +115,8 @@
                     Windows does have a pagefile.sys that can be examined, and there are hibernation files.
                     One thing that you should always do is unplug the network cable or get the port blocked.  Otherwise, an attacker might 
                     remain connected.  To minimize data risk, you want to examine things in the order of volatitity from the top down.
+                    You should not be limited to the list, as you might always be able to find more.  Always get the volatile data before you 
+                    start on non-volatitle things like logs, registry, executables, or relevant files.
                 <dl>
                     <dt>Order of volatility</dt>
                     <dd>System memory</dd>
@@ -126,8 +128,6 @@
                     <dd>Physical configuration and network topology</dd>
                     <dd>Backups</dd>
                 </dl>
-                You should not be limited to the list, as you might always be able to find more.  Always get the volatile data before you 
-                    start on non-volatitle things like logs, registry, executables, or relevant files.
             </p>
             <p>
                 When doing investigation, don't install your tools on what you are investigating!  Evidence and backups should not be written 
@@ -156,6 +156,20 @@
                 Once you find one thing, use it to find the next.  Try to correlate time stamps to build a timeline and get a big picture of the 
                     malware.  The master file table is really useful, as it tracks file creation and edits.  Volatility, the master file table, 
                     and Reg-Ripper are good tools for building timelines.
+            </p>
+            <p>
+                Event logs, firewall logs, ftp/other network logs, logs about tasks or applications and when they ran or are scheduled to run, 
+                    and things like antivirus logs are great.  Crash dumps!  The Prefetch folder contains a history of files being ran.  Restore 
+                    points can also contain malware.
+            </p>
+        </div>
+        <div>
+            <h2>Data Recovery</h2>
+            <p>
+                Need to look for where the files were when they were deleted, and look for fragments that may have not been overwritten yet or 
+                    spots that are unrecoverable.  One way is to look for file headers and file footers.  Photorec is one such tool for finding 
+                    complete files that have not been overwritten.  OSFMount lets you mount image files that can then be analyzed or have PhotoRec 
+                    run on it to recover files. 
             </p>
         </div>
     </body>
