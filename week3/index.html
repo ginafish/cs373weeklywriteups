@@ -27,7 +27,7 @@
             <p>
                 Yara is used for detecting malware.  You create rules like such:
             </p>
-            <span>
+            <code>
                 rule PotatoDetection {
                     strings:
                         $a = "potato.exe"
@@ -35,7 +35,7 @@
                     condition:
                         $a or $b
                 }
-            </span>
+            </code>
             <p>
                 You can add additional keywords to strings, like nocase and fullword, that make rules more extensible.
             </p>
@@ -45,7 +45,7 @@
             <p>
                 Command for running yara check: "Yara-2.1.0-win32\yara32.exe -p 10 -a 5 rule1.yara c:\windows\system32".  Rule for first lab:
             </p>
-            <span>
+            <code>
                 rule Learning {
                     strings:
                         $str1 = "OFTWARE\\Borland\\Delphi\\RTL"
@@ -54,7 +54,7 @@
                     condition:
                         all of them
                 }
-            </span>
+            </code>
             <p>
                 With Yara rules, you want to try to create rules that don't target strings, as they can be far too long, but also avoid false positives.
             </p>
