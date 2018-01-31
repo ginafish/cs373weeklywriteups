@@ -23,6 +23,22 @@
             <p>
                 One of the more popular network topologies is a model with a network firewall (or some kind of network intrusion protection), an evaluation of message, network, and web reputation, and then the host firewall, host intrusion protection, access control, and then anti-malware.  
             </p>
+            <h3>Yara</h3>
+            <p>
+                Yara is used for detecting malware.  You create rules like such:
+            </p>
+            <code>
+                rule PotatoDetection {
+                    strings:
+                        $a = "potato.exe"
+                        $b = http://potato.evil/potato4lief.potato
+                    condition:
+                        $a or $b
+                }
+            </code>
+            <p>
+                You can add additional keywords to strings, like nocase and fullword, that make rules more extensible.
+            </p>
         </div>
     </body>
 </html>
