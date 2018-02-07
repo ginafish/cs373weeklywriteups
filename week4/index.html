@@ -15,11 +15,34 @@
                 Nice to meet you Brad!
             </p>
             <p>
-                Most of the exploits out in the world are Windows based, so we're going to focus on Windows.  Hacking involves controlling programs in a way other than originally intended.  For example, when asked to go left or right, going straight or backwards.  Your goal is to think outside of the box to do what the developer didn't think about.  You can find "bugs" that alter the behavior of the program or take advantage of a misconfigured or poor programming decision (ex: weak password).  Hacking is a very serious thing now (think militarized cyber armies), so you have to be safe and ethical when learning how.  Also, if you ever want to cash in on a bug bounty, don't go to the company but go directly to the bug bounty team, or you may get lawyers threatening to sue you.  11:41
+                Most of the exploits out in the world are Windows based, so we're going to focus on Windows.  Hacking involves controlling programs in a way other than originally intended.  For example, when asked to go left or right, going straight or backwards.  Your goal is to think outside of the box to do what the developer didn't think about.  You can find "bugs" that alter the behavior of the program or take advantage of a misconfigured or poor programming decision (ex: weak password).  Hacking is a very serious thing now (think militarized cyber armies), so you have to be safe and ethical when learning how.  Also, if you ever want to cash in on a bug bounty, don't go to the company but go directly to the bug bounty team, or you may get lawyers threatening to sue you.  Lawyers don't like being hacked.
+            </p>
+            <p>
+                Attacks used to target "border" "DMZ" systems, so nowadays companies make sure that those systems are "hardened" to defend from those kinds of attacks.  As such, attackers have changed target to using phishing and social engineering on users.  If their attack succeeds, they can use the users' resources for deeper attacks.  Attackers also go after the websites that their target users use, compromise them, and then use them to install malware in the users' browsers.
             </p>
         </div>
         <div>
-            <h2></h2>
+            <h2>Exploitations</h2>
+            <p>
+                For this stuff, take the vulnerability and exploit it, not look for vulnerabilities.
+            </p>
+            <p>
+                WinDB lab
+                Launches program, instantly inserts a breakpoint, and leaves it for you to step through it.
+                Load up FSExploitMe
+                File > attach -> 2nd IE.exe process
+            </p>
+            <p>
+                Registers.
+                EAX often stores return value of a function in Windows.
+                EIP points to the next instruction.
+                EBP and ESP mark the start and end of a stack frame.
+                r command shows registers in WinDB
+
+                22:30ish gives command thing useful
+                24:15 all the commands needed for the WinDB lab
+            </p>
+
         </div>
     </body>
 </html>
