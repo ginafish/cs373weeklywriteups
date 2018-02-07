@@ -57,15 +57,37 @@
             <p>
                 41414141 looks rather sketchy.  edx, eip, and ebp?
             </p>
-            <p>Crash Triage - question 2 goes here.</p>
+            <img src="../images/2018-02/vmrc_2018-02-06_22-24-14.png" />
+            <img src="../images/2018-02/vmrc_2018-02-06_22-28-00.png" />
+            <p>
+                Hm... I wonder what memory has been overwritten.
+            </p>
+            <!-- skipping #3 and #4.  And the js and fly birdie and lesson 3 because I am falling asleep. -->
 
         </div>
 
         <div>
             <h2>Vulnerabilities!</h2>
             <p>
-                
+                Memory corruption!  There's also weak passwords, authorization issues (accounts having more access than they should), inadequate encryption, and injection.  Memory corruption requires input, and is a prime example of why you validate your inputs, as you don't know what sort of crazy stuff people might do to it.  If a program tries to access memory in a way that it shouldn't, it causes chaos.  This can mean reading or writing memory that belongs to something else, or isn't meant to be used for how it's being used, typically on the stack or the heap.  
             </p>
+            <p>
+                An exploit is code that causes a condition, and then you can take advantage of that condition with a vulnerability trigger.  Running calculator without running it a typical way is a common way of showing that you have control of the computer.
+            </p>
+        </div>
+
+        <div>
+            <h2>Exploits</h2>
+            <p>
+                Canary values and stacks are things.  Stack overflow involves reading more things that are left over in memory after being used or reading past the end of your memory cutoff point.
+            </p>
+            <p>
+                As an attacker, you can replace others' memory with your own, place a shell script, and then have the script call the memory that you had replaced.
+            </p>
+            <p>
+                Attackers are trying to convince users to go to websites and execute their code.  Often malware is a payload, not an entry point.
+            </p>
+
         </div>
     </body>
 </html>
