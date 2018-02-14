@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>[CS373] Gina Phipps' Week 5 Writeup</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="../global.css" />
+    </head>
+    <body>
+        <div>
+            <h1>Week 5 Writeup</h1>
+        </div>
+        <div>
+            <h2>BLACK MAGIC</h2>
+            <p>
+                Aka this week.
+            </p>
+            <p>
+                We'll be going over how malware writers protect their malware.
+            </p>
+        </div>
+        <div>
+            <h2>DRM Going Wrong</h2>
+            <p>
+                Sony at one point released a CD that was installing device drivers without any user prompt that would hide any file with $sys$ at the start, and then the file "wouldn't exist" at the kernal layer, which allowed malware to exploit it.
+            </p>
+        </div>
+        <div>
+            <h2>Rootkits 101</h2>
+            <p>
+                Malware authors try to hide their code!
+            </p>
+            <p>
+                Definition of a rootkit from slides: malware that tries to conceal its existence and actions from users and system processes.  (If it doesn't appear to exist, or is very well hidden, it'd be hard for it to be cleaned up!)  While it is harder for rootkits to purvey on 64 bit OS, there are quite a few ways for it to happen.
+            </p>
+            <p>
+                Things going on like applications, user-mode drivers, and the Windows API run in "user mode", while things like the kernel and kernel-mode drivers run in kernel mode.  At some point things do have to operate in kernel mode, such as keyboard and mouse inputs or file writing.
+            </p>
+        </div>
+    </body>
+</html>
