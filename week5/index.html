@@ -96,5 +96,30 @@
                 Can set breakpoints to evaluate things running in the kernal!
             </p>
         </div>
+        <div>
+            <h2>Patches</h2>
+            <p>
+                Can use WinDbg to patch back memory, and then Teluca to verify that the hooks are gone.
+            </p>
+            <p>
+                Just want to change table pointers so that they point back to legitimate stuff.  With the pointers changed, they malicious memory is still there, but it won't be executed any more.  Take care not to blue screen yourself....  The leftover memory could also be potentially access by a thread, so depending on the malware you may need to track down the thread(s) and kill it.
+            </p>
+        </div>
+        <div>
+            <h2>Booting!</h2>
+            <ol>
+                <li>PC gets power</li>
+                <li>BIOS initializes hardware</li>
+                <li>BIOS calls MBR code at the start of its first registered disk</li>
+                <li>MBR loads bootsector code of active parition</li>
+                <li>Bootsector runs bootloader</li>
+                <li>Bootloader configuration/database loaded from its partition</li>
+                <li>Depending on config, may prompt users to select OS</li>
+                <li>Bootloader loads kernel for selected OS, then gives the OS the keys</li>
+            </ol>
+            <p>
+                You can actually use gdb to step through the mbr!
+            </p>
+        </div>
     </body>
 </html>
