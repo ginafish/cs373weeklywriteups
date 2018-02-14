@@ -14,9 +14,6 @@
             <p>
                 Aka this week.
             </p>
-            <p>
-                We'll be going over how malware writers protect their malware.
-            </p>
         </div>
         <div>
             <h2>DRM Going Wrong</h2>
@@ -34,6 +31,69 @@
             </p>
             <p>
                 Things going on like applications, user-mode drivers, and the Windows API run in "user mode", while things like the kernel and kernel-mode drivers run in kernel mode.  At some point things do have to operate in kernel mode, such as keyboard and mouse inputs or file writing.
+            </p>
+        </div>
+        <div>
+            <h2>Agonyyyyy (Part 1)</h2>
+            <p>
+                Lab lab
+            </p>
+            <p>
+                Tools:  <b>Cuckoo</b>, <b>FakeNet</b>, Analyzer.py, RegShot, LiveKD, Tuluka
+            </p>
+            <p>
+                Metaphor: you are trying to feed the needy, and someone is sitting in the middle eating all of your bananas.  This represents what the malware is doing.
+            </p>
+            <p>
+                LiveKD: "u [memory address]" displays what is located at a spot in memory.
+            </p>
+        </div>
+        <div>
+            <h2>Threads</h2>
+            <p>
+                Definition: smallest unit of execution in an operating system.
+            </p>
+            <p>
+                A thread could be, potentially, a three line program that establishes three variables and then adds them together into a new variable.  Those lines get translated into machine code and be on RAM, and then loaded into the CPU's registers.  A thread executes one action at a time, so multithreading and thread schedulers was created to allow multiple programs to run "simultaneously".  That still wasn't good enough, so hyperthreading and then multicore processors became things.
+            </p>
+            <p>
+                Thread context should be saved to memory when threads are switched.  Threads have their own stacks, and user and kernel mode stacks.
+            </p>
+            <p>
+                Tool for analyzing thread memory: Process Hacker!  Keep in mind that a process can have many threads.  A process cannot execute without a thread.
+            </p>
+        </div>
+        <div>
+            <h2>Lab 2</h2>
+            <p>
+                Lab lab
+            </p>
+            <p>
+                zbot.zip
+            </p>
+            <p>
+                Use Process Hacker (similar to Process Explorer).  Can walk through a process' memory and threads with it!  The "Image" memory is the binary of what is being run. Dll files being run will create images when run.
+            </p>
+            <p>
+                You cannot separate code and data in memory!  The code being executed gets loaded into memory just like the variables and data being altered.
+            </p>
+            <p>
+                Rootkits aim to edit the memory of running applications.  This is process injection.  Often times it doesn't bother to name what it did.
+            </p>
+            <p>
+                Hooks - example: hook into Windows API, and when "FindNextFile" is ran, rootkit has its code run instead.  It tries to hijack and sit in the middle of conversations between legitimate drivers and files and edit their conversations.
+            </p>
+        </div>
+        <div>
+            <h2>Lab 3</h2>
+            <p>
+                Moar lab lab!!!
+            </p>
+            <p>
+                Use WinDbg to create breakpoints. F8 step into, F10 step over.
+            </p>
+            <p>
+                Can set breakpoints to evaluate things running in the kernal!
             </p>
         </div>
     </body>
