@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>[CS373] Gina Phipps' Week 6 Writeup</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="../global.css" />
+    </head>
+    <body>
+        <div>
+            <h1>Week 6 Writeup</h1>
+        </div>
+
+        <div>
+            <h2>Intro to Network Security</h2>
+            <p>
+                Important things to know: TCP, UDP, and IP.  IP Protocol for UDP: 17.  6 for TCP.
+            </p>
+            <p>
+                Why do networks need to be secure?  1. Stop malicious things before they arrive (safe space).  2. Keep critical data from leaving your hosts. 3. DDoS attacks.  4. Botnets.  5. Cyber warfare.
+            </p>
+            <p>
+                There used to not be standard network communications, so if you wanted to communicate with one company's network you'd have to buy their equipment, and the equipment of another to talk to their network.  “Be liberal in what you accept, and conservative in what you send” helped lead towards the openness of networks that we have, both the good and the bad.  Legacy character encodings + ../ = recipe for code escaping web space to the rest of the host.
+            </p>
+        </div>
+
+        <div>
+            <h2>Protection Strategies</h2>
+
+            <h3>Positive Policy, aka Whitelisting.</h3>
+            <p>
+                Basically: what you expect to happen on the network.  Can use this to judge unexpected behavior so that you can tell if something is legit or not.  "I know what my network does, so I can see what you're doing because it's not working the way I made it to."  Attacker doesn't know which is the web and which is the mail server until they try to send mail to the right server.
+            </p>
+            <p>
+                An attack service is the set of operations that the network is willing to respond to.  Ex: SSH is enabled, disable it to make the attack surface smaller.  Can hook firewalls, trusts (certificates), identities, etc to make more secure.
+            </p>
+            <p>
+                When get something unexpected, computer won't tell you what is, so you have to work on figure it out.  Advantage of policy is that you have a defined set of things that work, which is large but finite, while the number of compromises is infinite.
+            </p>
+
+            <h3>Firewall</h3>
+            <p>
+                A Firewall is the most common device that implements policy (whitelisting).  Divides network into security zones (user computers vs servers etc). DMZ: buffer between networks.  Can describe protocols in firewall.  Often "sees connection, decides if it wants to allow it or not", but also others out there.
+            </p>
+            <p>
+                Web gateways, eg proxies, "splice" connetions from one client to another with itself as the intermediary.  Web gateways have better views of data than a firewall, so while a firewall may block a whole page because of an add, a web gateway can just block parts.
+            </p>
+            <p>
+                SMTP, the protocol for mail servers, is basically a "hey, I have this name registered here with this record, and this says that whatever is sent to my name goes to this server."  Proxies are used for email because they can stop and save the mail and filter as needed.
+            </p>
+
+            <h3>Defense in depth</h3>
+            <p>
+                Want to have layered defenses so if one layer fails, next available as a failsafe.
+            </p>
+
+            <h3>Intrusion Detection</h3>
+            <p>
+                IDS use blacklists.  They specifically look for threats, particularly ones that are well understood.  We like ones that are well understood because they notify us that we are under attack, and we might have unpatched systems on our network.  They are vulnerable to false positives.  Yara rules can be used in these, but more commonly used in honneynets.
+            </p>
+
+            <h3>Honeynets aka Intrusion Deception</h3>
+            <p>
+                Phony network to waste attackers time!  Basically something, a network device, put out there that is open to attack, and we put things on it and make sure we're slowing them down to waste their time.  We then know what the attackers are for then.
+            </p>
+            <p>
+                Not too common because they require very specific configuration to be useful.
+            </p>
+
+            <h3>Quarantine</h3>
+            <p>
+                Put you in your own corner of the network and don't let you play with the other kids :(.  Ex: joining public networks and get the "enter your login" etc pages.  Can also quarantine attackers so that they don't realize that they've been had and can still try to waste their time getting at our network.  They also would likely just try again in another spot if they were just blocked.
+            </p>
+
+            <h3>Reputation</h3>
+            <p>
+                Big data wooo!  Reputation of IP addresses, files, etc, can tip off to bad things or okay things.  Can also segment based on that (you're allowed here but not there).  Ie: map all of the attacks errywhere, store it in big data, can be applied to if legit or not.  MAC addresses are being regarded much more as great because can be used to point to physical location in the world you are.
+            </p>
+        </div>
+
+        <div>
+            <h2>Man In the Middle Attacks</h2>
+            <p>
+                A MITM attack isn't just used for attack, but also protection.  MITM can intercept and rewrite messages.  Good example: identity verification (Bob is really Bob and not a bad person.)  Bad example: ARP poisoning.  ARP broadcasts on the network, so I could potentially respond to your ARP request before you do....  Another example: TCP hijacking.  Intercept or inject into TCP connections.  Can use ARP poisoning to do TCP hijacking.  Another good example: proxies.  Using proxy to remove an attacker's code.  Also removing suspicious characters from obfuscated urls.  And mail proxies and SSL MITM (decrypt and reencrypt w/ private key, spoofing certificate).
+            </p>
+            <p>
+                Stopping the bad guys: first need to detect. HMAC, a one-way function that is crypto and compresses things.  If want to crack, need to unencrypt to get original data.  HMAC can be used by receiver to verify.  Ie, shared secrets like public vs private keys.
+            </p>
+            <p>
+                TLS is a way of securing SSL.  You start by exchanging security certificates before sharing your information.  Heartbleed was a TLS vulnerability.
+            </p>
+            <p>
+                DNS can be poisoned, for example you could pretend to be a DNS server and respond to all DNS requests.  Also not much helps with a mistyped url, especially if you get a page that looks and responds like a legitimate one that isn't.
+            </p>
+        </div>
+
+        <div>
+            <h2>Lab 2 Intro</h2>
+            <p>
+                Going to get some packets that represent data flow.  Directory: network security/lab2/.  We'll be using the Linux VM.  Example Python starter script at 1:54 in the last lecture video of day 1.  Subnets correspond to class.  Tell prefix based on something router audio cut out, but "probably 24 bit" was the answer.
+            </p>
+        </div>
+
+        <div>
+            <h2>Doing Recon on Threats</h2>
+            <p>
+                Why: you want to know what you're targeting.  You don't want to send stuff to a DMZ or honeypot.
+            </p>
+            <p>
+                Passive recon: sitting in network and listening, want to learn about the things going on.  Active recon: seeing what machines there are on the network, what ports are open, and what the addresses of the vulnerable machines are so that they can be targeted.
+            </p>
+            <p>
+                Active recon tools: ping, port scan (UDP and TCP), NMAP.  Want to get an IP address and port of a service that can be attacked.  ICMP requests can tell how many hops a computer has to make and how many routers there are?  Many firewalls reduce details to prevent people from going too deep into the network.  As a network admin, you can look for the same IP hitting a lot of different ports to tip you to someone doing a port scan.  Attackers get around this by doing a "slow scan" and slowly scan your network over the course of several months.  
+            </p>
+        </div>
+
+        <div>
+            <h2></h2>
+            <p></p>
+        </div>
+
+        <div>
+            <h2></h2>
+            <p></p>
+        </div>
+
+        <div>
+            <h2></h2>
+            <p></p>
+        </div>
+
+        <div>
+            <h2>Robustness Principle</h2>
+            <p>
+                At every layer of the protocols, there is a general rule whose application can lead to enormous benefits in robustness and interoperability [ref to rfc760, 1980]: 
+            </p>
+            <p style="color:red">
+                “Be liberal in what you accept, and conservative in what you send” 
+            </p>
+            <ul>
+                <li>Accepting really old legacy things can be a security risk.</li>
+                <li>Accepting all of the packets in the world is a great way to hose your servers.</li>
+                <li>Need to always validate anything you get.</li>
+            </ul>
+
+            <p style="color:green">
+                Software should be written to deal with every conceivable error, no matter how unlikely; sooner or later a packet will come in with that particular combination of errors and attributes, and unless the software is prepared, chaos can ensue. In general, it is best to assume that the network is filled with malevolent entities that will send in packets designed to have the worst possible effect. 
+            </p>
+            <ul>
+                <li>Yup, you should always validate the things you receive.</li>
+            </ul>
+
+            <p>
+                This assumption will lead to suitable protective design, although the most serious problems in the Internet have been caused by unenvisaged mechanisms triggered by low-probability events; mere human malice would never have taken so devious a course! 
+            </p>
+            <ul>
+                <li></li>
+            </ul>
+
+            <p>
+                Adaptability to change must be designed into all levels of Internet host software. As a simple example, consider a protocol specification that contains an enumeration of values for a particular header field—e.g., a type field, a port number, or an error code; this enumeration must be assumed to be incomplete. Thus, if a protocol specification defines four possible error codes, the software must not break when a fifth code shows up. 
+            </p>
+            <ul>
+                <li></li>
+            </ul>
+
+            <p>
+                An undefined code might be logged (see below), but it must not cause a failure. 
+            </p>
+            <p>
+                The second part of the principle is almost as important: software on other hosts may contain deficiencies that make it unwise to exploit legal but obscure protocol features. It is unwise to stray far from the obvious and simple, lest untoward effects result elsewhere. A corollary of this is “watch out for misbehaving hosts”; host software should be prepared, not just to survive other misbehaving hosts, but also to cooperate to limit the amount of disruption such hosts can cause to the shared communication facility. 
+            </p>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+        <div>
+            <h2>Firewall Policy</h2>
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>Source</th>
+                    <th>Destination</th>
+                    <th>Service</th>
+                    <th>Action</th>
+                    <th>Alert</th>
+                    <th>Comment</th>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Connect the data centers (Corp DC, Cloud DC)</td>
+                </tr>
+
+                <tr>
+                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Connect the data centers (Corp DC, Cloud DC)</td>
+                </tr>
+
+                <tr>
+                    <td>6</td>
+                    <td></td>
+                    <td></td>
+                    <td>SMB</td>
+                    <td></td>
+                    <td></td>
+                    <td>Enable corporate workstations to share files with the DCs</td>
+                </tr>
+
+                <tr>
+                    <td>7</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Enable traffic into the DMZ web server</td>
+                </tr>
+
+                <tr>
+                    <td>8</td>
+                    <td></td>
+                    <td></td>
+                    <td>SMTP</td>
+                    <td></td>
+                    <td></td>
+                    <td>Enable the DMZ mail server</td>
+                </tr>
+
+                <tr>
+                    <td>9</td>
+                    <td></td>
+                    <td></td>
+                    <td>SMTP</td>
+                    <td></td>
+                    <td></td>
+                    <td>Enable the DMZ mail server</td>
+                </tr>
+
+                <tr>
+                    <td>10</td>
+                    <td>Partner 1 on Internet</td>
+                    <td></td>
+                    <td>HTTPS</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>11</td>
+                    <td>Trusted client on Internet</td>
+                    <td></td>
+                    <td>HTTPS</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>12</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Protect lab servers from Internet traffic</td>
+                </tr>
+
+                <tr>
+                    <td>13</td>
+                    <td></td>
+                    <td></td>
+                    <td>SSH</td>
+                    <td></td>
+                    <td></td>
+                    <td>Enable corporate users to access the lab machines</td>
+                </tr>
+
+            </table>
+        </div>
+    </body>
+</html>
