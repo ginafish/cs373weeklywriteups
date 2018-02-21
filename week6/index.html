@@ -109,7 +109,13 @@
                 Passive recon: sitting in network and listening, want to learn about the things going on.  Active recon: seeing what machines there are on the network, what ports are open, and what the addresses of the vulnerable machines are so that they can be targeted.
             </p>
             <p>
-                Active recon tools: ping, port scan (UDP and TCP), NMAP.  Want to get an IP address and port of a service that can be attacked.  ICMP requests can tell how many hops a computer has to make and how many routers there are?  Many firewalls reduce details to prevent people from going too deep into the network.  As a network admin, you can look for the same IP hitting a lot of different ports to tip you to someone doing a port scan.  Attackers get around this by doing a "slow scan" and slowly scan your network over the course of several months.  
+                Active recon tools: ping, port scan (UDP and TCP), NMAP.  Want to get an IP address and port of a service that can be attacked.  ICMP requests can tell how many hops a computer has to make and how many routers there are?  Many firewalls reduce details to prevent people from going too deep into the network.  As a network admin, you can look for the same IP hitting a lot of different ports to tip you to someone doing a port scan.  Attackers get around this by doing a "slow scan" and slowly scan your network over the course of several months.
+            </p>
+            <p>
+                NMAP can be used for port scanning, and shows the state of the tcp connections on them, in addition to other stuff.  If it shows open as the state, it is accepting requests as normal.
+            </p>
+            <p>
+                Passive recon: is generally illegal....  You basically snoop the network.  Ways of defending include slowing attackers down through honeynets.  Honeynet puts a fake network out there, and Mcafee's in particular makes them look like a defense contractor.  Slows them down because they are receiving false information.  Can also simply slow down your responses.  Use log correlation to 
             </p>
         </div>
 
