@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>[CS373] Gina Phipps' Week 7 Writeup</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="../global.css" />
+    </head>
+    <body>
+        <div>
+            <h1>Week 7 Writeup</h1>
+        </div>
+        <div>
+            <h2>Intro</h2>
+            <p>
+                Yay web security!  We're going to be going over how to do the attacks that we need to know how to protect against.  Lab will be done with WebGoat!
+            </p>
+            <p>
+                Reminder: you don't have to succeed at hacking to be sent to jail, so don't experiment on things that you don't have authorization to do so on.
+            </p>
+        </div>
+        <div>
+            <h2>The Web as a delivery mechanism</h2>
+            <p>
+                The internet is everywhere - thanks IoT!  Things are changing very quickly, so even things you learn about in school won't be useful for too long before they've been patched.  Browsers have been working a lot more at blocking things.
+            </p>
+            <p>
+                Lots of things use the internet as a delivery mechanism, and have been for quite a while.  One example is archive bombing, which is where you archive an archive so many times that when your OS tries to be proactive and open every archive it omes across, it tries to do it to the point that it locks itself up.  These archive bombs would be transmitted through scripts (Javascript etc), and would basically just kill the browser page that you were on.  The "bronze age" brought SQL injections, cross-site scripting, and browser exploits.  The "iron age" in the 2005's gave us better phishing attacks, plug-in exploitations, and custom exploits for the different browsers as they had become much more differentiated.  The Java plugin was awful and thank goodness it's finally being forced to its last breath.  These days, there's the idea of MitB - you do everything in your browser now and never shut your device off, so why bother trying to target what's beyond it?  No need for writing to disk where antivirus might find you, so just stay in the browser's memory.  It's also not too bad to make sure that your user comes back through bookmarks or cache or homepage settings.
+            </p>
+            <p>
+                95% of malware is from the web.  Most of the rest is from usbs and such.  Now that Javascript can be used for so much, it offers a lot for hackers to hit every layer of a stack.  
+            </p>
+        </div>
+        <div>
+            <h2>Going after the users</h2>
+            <p>
+                Many attacks simply take advantage of users.  One common way is to use social engineering - getting users to do something willingly that is malicious.  For example, tricking users into giving website credentials.  Users are and <i>will always be</i> the weak link.  Common user traits include impatience, laziness, self-proclaimed omniscience, and clickaholic, which is what attackers take advantage of through using their actions against them.  A fake antivirus in Korea had kittens running across the screen, and users started asking legit antivirus companies to make their interfaces similar to it.  "Hey, run this please, *click click next*, okay thank you for being infected."
+            </p>
+            <p>
+                Phishing has been getting a lot better at making themselves look legitimate.  They make their UIs look the same, urls look similar, and look to get their sites signed.
+            </p>
+            <p>
+                SEO poisoning, or search engine optimization poisoning, involves trying to get malicious links at the top of the results for popular topics.  One trend is to try to poison results for developers so that when they try to look something up, they get an insecure or malicious way.
+            </p>
+        </div>
+    </body>
+</html>
