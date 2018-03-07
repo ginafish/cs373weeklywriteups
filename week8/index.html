@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>[CS373] Gina Phipps' Week 8 Writeup</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="../global.css" />
+    </head>
+    <body>
+        <div>
+            <h1>Week 8 Writeup - On Messaging Security</h1>
+        </div>
+        <div>
+            <h2>Phish!</h2>
+            <p>
+                <a href="http://phishingquiz.mcafee.com">Phishing Quiz</a> which apparently no longer is a quiz but just an add for McAfee, at least when I tried it.
+            </p>
+            <p>
+                HR are most likely to be targetted, and one of the worst fields at identifying phishing.
+            </p>
+            <p>
+                Spamtrap/honeypot: collects spam emails, sending hard bounces (like "this email doesn't exist") that pretty much only legitimate emailers recognize.
+            </p>
+            <p>
+                Snowshoe spam: technique for spam where they spread the load out for sending spam across lots of IPs.  They try to avoid IP reputation systems by mocking regular email behavior (consistentish trickle of email) and not sending enough emails to be caught immediately.
+            </p>
+            <p>
+                One common way for spam to get in is to spoof a reply-to address.
+            </p>
+            <p>
+                Realtime Blackhole List (RBL): IP reputation.  Thanks to IPv4, these still work pretty well.  Very distributed across vendors.  Also rather effective (if they're in the list, drop them).
+            </p>
+            <p>
+                Filter emails based off of lots of things: form rules like "combination of sender + url are same domain, looks good".  Want to try to have a generic rule as opposed to specific, as specific ones are twarted easily.
+            </p>
+            <p>
+                Bayesian: for a given set of samples (ham or spam), take a corpus of hams vs spams, calculate a prevalence for "tokens", and use them to build weights for the likelihood of an email being legit.
+            </p>
+        </div>
+        <div>
+            <h2>Classics</h2>
+            <p>
+                419 phishing: 419 is the criminal code that corresponds to this type of phishing, which is the "relative in insert country just died and halp me I need money moved" type of phishing.  Sometimes they go for a "long fish" where they try to engage you for a while before trying to real you in.
+            </p>
+            <p>
+                Canadian pharmacy: they try to avoid filters by breaking up the letters with span tags.
+            </p>
+            <p>
+                Market Pick: "hey this stock is doing super great you should buy it!" to convince people to buy it, then the spammers dump their stock when it gets really high.
+            </p>
+            <p>
+                How to battle: reputation and content driven.  IP, message, url, vs content rules.
+            </p>
+            <p>
+                Tools:
+            </p>
+            <ul>
+                <li>DIG, WHOIS, Grep, SED, AWK: Linux tools for DNS investigation, data parsing</li>
+                <li>Open source databases like PostgreSQL and MySQL</li>
+                <li>Regex</li>
+                <li>Trustedsource.org and spamhaus.org</li>
+            </ul>
+        </div>
+        <div>
+            <h2>Managing the flood</h2>
+            <p>
+                99% accuracy on 100 billion emails isn't great.  As such, you can use a variety of techniques like parsing (metadata), grouping (timestamp, source ip, url), and aggregating (count distinct) emails.  Then, use the information to identify outliers.
+            </p>
+            <p>
+                How much human input required for your tactic, and how much can you automate?  Easy to fall into mistakes like banning all email from China or mess up your Regex.  Machine learning is very applicable for this.
+            </p>
+            <p>
+                Two major tactics: probability scoring vs additive scoring.  The later involves adding up points for things, and then if it's above a threshold it's probably spam.  The former is a probability score from 0 to 1.
+            </p>
+        </div>
+        <div>
+            <h2>SMTP</h2>
+            <p>
+                Spoofing an email address is crazy easy - just edit the from in a SMTP request.  SMTP wasn't designed to be secure.  You read email headers from bottom up.
+            </p>
+            <p>
+                Compare data models - build a "description" of spam, compare to ham (number of Oprahs, punctuation, greeting, html tags).  Can build a star with the axis labeled to a variable and a point representing the value (ie: point in the center for no Oprahs, point at the end for having Oprahs).  Then, compare the spam vs the ham for a visual representation.
+            </p>
+        </div>
+    </body>
+</html>
