@@ -51,9 +51,21 @@
         </div>
 
         <div>
-            <h2></h2>
+            <h2>Android Fundamentals</h2>
             <p>
-                2011
+                Architecture: applications, application framework, libraries | android runtime, linux kernel.  Dalvik VM is a VM software for Android pre-5.0 (at the time of the lecture).  The Android after version 4.4 has Ahead-of-time compilation, better garbage collection, and improvements for development and debugging.  ART, which has these things, slowly replaced Dalvik from 4.4 to 5.0.
+            </p>
+            <p>
+                Parts of an Android application: Activities (UIs, each is a single screen), Services (parts taht run in the background without a UI), Broadcast Receivers (system-wide announcements like like the device finishing booting up), Content Providers (shared app data, like contacts, which may have sensitive info and isn't commonly used by malware authors).  All apps are sandboxed from each other.
+            </p>
+            <p>
+                Interprocess communication: applications talking to each other.  Content providers, like photos and databases, expose data.  Intents send messages between apps.  Intents can be explicit or implicit, with the former being for things like starting services, and the latter being for data administration privilege requests.  Binders allow processes to call things in others' processes.  All other ways aren't officially Google-approved, but some are Unix-type, like process Signals, pipes, sockets, message queues, semaphores, and shared memory.  Non-official methods may not work as well due to Android's app sandboxing.
+            </p>
+            <p>
+                Permissions: process restrictions.  At the time of the lecture, Android had static permissions where they are requested on install and not when the application is ran.  Permissions needed would need to be declared in Manifests, as by default they have none.  Permission levels range from normal to SignatureOrSystem, where the lowest requires no approval, while the highest only works if it's a signed app in the system image.  Dangerous requires user approval, and Signature requires two apps' certificates to match.
+            </p>
+            <p>
+                Manifest declares needed permissions, minimum API level required, declares the components of the app, and any necessary hardware or software features (like the camera or microphone).
             </p>
         </div>
 
