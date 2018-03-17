@@ -91,5 +91,23 @@
         </div>
 
 
+        <div>
+            <h2>Payload Analysis</h2>
+            <p>
+                Elf binaries can be used by good actors and bad.  You can use a hex editor to check if 75 45 4C (ELF) is in a file, but it might be encrypted sometimes.  Often binary code is hidden inside images.  You can execute the ELF payload through loading it as a library or executing it through a shell, though there are lots and lots of other ways.  You can do static analysis with the ARM disassembler, which gives you assembly code, or the decompiler, which gives you code that is basically a step above assembly.  Other disassemblers include IDA Pro, ODA, and Hex-Rays, though the first and last are very expensive.  You can also run debuggers like gdb, gdbserver and gdbclient.
+            </p>
+        </div>
+
+        <div>
+            <h2>Android Banking Trojans</h2>
+            <p>
+                Steal your 2FA, steal your credentials, give those hackers their money... is what we want to avoid.  2Fa involves combinations of things like PINs, passwords, patterns, credit cards, tokens, and fingerprints to determine if an application should grant you access or not.
+            </p>
+            <p>
+                The early banking trojans for mobile were components intended to work with their PC versions.  They would try to get your credentials by infecting, using a fake credential request page, getting you to input your credentials in the fake page, ask you to install the Android "security app", and then use the installed Android malware to get the 2nd factor.
+            </p>
+        </div>
+
+
     </body>
 </html>
