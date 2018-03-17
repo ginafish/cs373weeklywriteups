@@ -69,5 +69,27 @@
             </p>
         </div>
 
+
+        <div>
+            <h2></h2>
+        </div>
+
+
+        <div>
+            <h2></h2>
+        </div>
+
+
+        <div>
+            <h2>Malware and Public Exploits</h2>
+            <p>
+                Exploid - exploits a vuln that was recorded as patched in 2009.  Turned out it was fixed in Linux for desktop but not Android.  The exploit exploited udev, the device manager for the kernel that handles user space.  Android moved udev into the init daemon from its own executable, which is a daemon that runs in userland with root privileges.  Android udev then would not make sure that uevent messages actually came from the kernel....  The exploit would spoof kernel messages and send them to userland for udev to pick up.  Create a real event for udev, and then it will try to do whatever you told it to do (like launching sh with root privileges).
+            </p>
+            <p>
+                Ratc, another expliot, would exploit forking and the Android Debug Bridge to get root privileges.
+            </p>
+        </div>
+
+
     </body>
 </html>
